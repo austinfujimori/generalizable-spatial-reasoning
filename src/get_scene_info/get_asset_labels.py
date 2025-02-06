@@ -107,9 +107,9 @@ HELPER
 Check if asset is a wall
 We do the stripping stuff because if the blend is named "wall" then all assets would be classified as a wall
 """
-def is_wall(obj_key: str) -> bool:
-    if obj_key.startswith(blend_prefix + "-"):
-        obj_key_stripped = obj_key[len(blend_prefix) + 1:]
+def is_wall(obj_key: str, blend_name: str) -> bool:
+    if obj_key.startswith(blend_name + "-"):
+        obj_key_stripped = obj_key[len(blend_name) + 1:]
     else:
         obj_key_stripped = obj_key
     return 'wall' in obj_key_stripped.lower()
@@ -119,9 +119,9 @@ HELPER
 
 Check if asset is a floor, will combine this and wall into a global func
 """
-def is_floor(obj_key: str, blend_prefix: str) -> bool:
-    if obj_key.startswith(blend_prefix + "-"):
-        obj_key_stripped = obj_key[len(blend_prefix) + 1:]
+def is_floor(obj_key: str, blend_name: str) -> bool:
+    if obj_key.startswith(blend_name + "-"):
+        obj_key_stripped = obj_key[len(blend_name) + 1:]
     else:
         obj_key_stripped = obj_key
     return 'room' in obj_key_stripped.lower()
@@ -288,7 +288,7 @@ def main():
     for obj_key, obj_details in objects_dict.items():
         logging.info(f"Processing object: {obj_key}")
 
-        if is_wall(obj_key):
+        if is_wall(obj_key, blend_name):
             obj_type = "wall"
             label_field = "wall_type"
         elif is_floor(obj_key, blend_name):

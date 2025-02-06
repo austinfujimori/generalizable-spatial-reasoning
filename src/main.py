@@ -7,10 +7,10 @@ import json
 def main():
     # Parse arguments
     parser = argparse.ArgumentParser(
-        description="Run process_foyr.py, render images with Blender, process images with Groq Vision API, and extract_walls.py in sequence."
+        description="Run process_foyr.py, render images with Blender, process images with OpenAi's gpt4o, and extract_walls.py in sequence."
     )
     parser.add_argument(
-        "--input_blend", 
+        "--input_blend",
         required=True, 
         help="Path to the input .blend file."
     )

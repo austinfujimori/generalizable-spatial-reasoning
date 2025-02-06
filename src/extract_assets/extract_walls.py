@@ -87,6 +87,9 @@ def extract_walls(scene_json_path, wall_list_path):
     with open(scene_json_path, 'r') as f:
         scene_data = json.load(f)
 
+
+    # we need a better way to dect these walls
+
     objects_dict = scene_data.get("objects", {})
 
     # 1) Identify all "wall" objects
